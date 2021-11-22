@@ -32,4 +32,20 @@ public class PersonaService {
         List<PersonaModel> personaList = personaRepository.findByTipoDocumentoAndNumeroDocumentoAndPais(persona.getTipoDocumento(), persona.getNumeroDocumento(), persona.getPais());
         return personaList.size() <= 0;
     }
+
+    public List<PersonaModel> getPersonas() {
+        return (List<PersonaModel>) personaRepository.findAll();
+    }
+
+    public void updatePersona(PersonaModel persona) {
+        if (persona.getId() != null && personaRepository.findById(persona.getId()).isPresent()) {
+            personaRepository.save(persona);
+        } else {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public void deletePersona(Long id){
+       personaRepository.deleteById(id);
+    }
 }
