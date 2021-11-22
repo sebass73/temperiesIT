@@ -1,7 +1,20 @@
 # Temperies IT
 Este es el desafío técnico dado por Temperies IT.
 
+Requerimientos:
+- Java 11+
+- Maven 3.6.3
+
 ### Manual de usuario
+
+### Configuracion BBDD
+Para persistir los elementos en la bbdd
+- spring.jpa.hibernate.ddl-auto=update
+
+Para limpiar los datos de la bbdd con la ejecución de la aplicación
+- spring.jpa.hibernate.ddl-auto=create
+
+### Endpoints
 
 **POST** `localhost:8080/create` método para crear nuevas Personas.
 
@@ -49,11 +62,30 @@ Ejemplo de request:
 }
 ```
 
-**DELETE** `localhost:8080/delete/{id}` método para eliminar Personas. 
+**DELETE** `localhost:8080/delete/{id}` método para eliminar Personas.
 
-### Configuracion BBDD 
-Para persistir los elementos en la bbdd
- - spring.jpa.hibernate.ddl-auto=update
+Ejemplo de endpoint:
 
-Para limpiar los datos de la bbdd con la ejecución de la aplicación
- - spring.jpa.hibernate.ddl-auto=create
+```
+localhost:8080/delete/3
+```
+
+**GET** `localhost:8080/stats` método que devuelve cifras totalizadoras de cantidad de porcentaje de personas por país.
+
+Ejemplo de response:
+``` JSON
+[
+    {
+        "country": "Uruguay",
+        "average": "0.25"
+    },
+    {
+        "country": "Brasil",
+        "average": "0.25"
+    },
+    {
+        "country": "Argentina",
+        "average": "0.5"
+    }
+]
+```

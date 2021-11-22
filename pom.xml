@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.temperiesIt</groupId>
 	<artifactId>sebastian</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.2</version>
 	<packaging>war</packaging>
 	<name>sebastian</name>
 	<description>Este es el desafío técnico dado por Temperies IT</description>

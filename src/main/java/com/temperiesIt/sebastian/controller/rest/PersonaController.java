@@ -1,5 +1,6 @@
 package com.temperiesIt.sebastian.controller.rest;
 
+import com.temperiesIt.sebastian.domain.Stat;
 import com.temperiesIt.sebastian.model.PersonaModel;
 import com.temperiesIt.sebastian.service.PersonaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +29,8 @@ public class PersonaController {
 
     @GetMapping("/readAll")
     @ResponseStatus(HttpStatus.OK)
-    public @ResponseBody List<PersonaModel> getPersonas(){
+    public @ResponseBody
+    List<PersonaModel> getPersonas() {
         return personaService.getPersonas();
     }
 
@@ -40,7 +42,14 @@ public class PersonaController {
 
     @DeleteMapping("/delete/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public void deletePersona(@PathVariable Long id){
+    public void deletePersona(@PathVariable Long id) {
         personaService.deletePersona(id);
+    }
+
+    @GetMapping("/stats")
+    @ResponseStatus(HttpStatus.OK)
+    public @ResponseBody
+    List<Stat> getStats() {
+        return personaService.getStats();
     }
 }
