@@ -1,11 +1,14 @@
 package com.temperiesIt.sebastian.service;
 
+import com.temperiesIt.sebastian.domain.Stat;
 import com.temperiesIt.sebastian.model.PersonaModel;
 import com.temperiesIt.sebastian.repository.PersonaRepository;
+import com.temperiesIt.sebastian.vo.StatsVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class PersonaService {
@@ -45,7 +48,22 @@ public class PersonaService {
         }
     }
 
-    public void deletePersona(Long id){
-       personaRepository.deleteById(id);
+    public void deletePersona(Long id) {
+        personaRepository.deleteById(id);
     }
+
+    public List<Stat> getStats() {
+        List<StatsVo> nacionalidades = personaRepository.findByPais();
+        int totalPersonas = getCantidadPersonas(nacionalidades);
+        return nacionalidades.stream().map(nacionalidad -> new Stat(nacionalidad.getPais(), getAverage(nacionalidad, totalPersonas))).collect(Collectors.toList());
+    }
+
+    private String getAverage(StatsVo nacionalidad, int totalPersonas) {
+        return Float.toString((float) nacionalidad.getCantidad() / totalPersonas);
+    }
+
+    private int getCantidadPersonas(List<StatsVo> nacionalidades) {
+        return nacionalidades.stream().mapToInt(StatsVo::getCantidad).sum();
+    }
+
 }
