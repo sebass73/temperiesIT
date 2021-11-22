@@ -23,6 +23,7 @@ public class PersonaModel {
     private String nombre;
     private String tipoDocumento;
     private String numeroDocumento;
+    private int edad;
     private String email;
     private String pais;
 }
