@@ -1,1 +1,1 @@
-web: java -jar target/sebastian-0.0.2.jar
+web: java -jar target/sebastian-0.0.3.jar
