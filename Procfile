@@ -1,1 +1,1 @@
-web: java -jar target/sebastian-0.0.2.jar
+web: java $JAVA_OPTS -jar target/dependency/webapp-runner.jar --port $PORT target/*.war
