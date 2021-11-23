@@ -1,17 +1,22 @@
 # Temperies IT
+
 Este es el desafío técnico dado por Temperies IT.
 
 Requerimientos:
+
 - Java 11+
 - Maven 3.6.3
 
 ### Manual de usuario
 
 ### Configuracion BBDD
+
 Para persistir los elementos en la bbdd
+
 - spring.jpa.hibernate.ddl-auto=update
 
 Para limpiar los datos de la bbdd con la ejecución de la aplicación
+
 - spring.jpa.hibernate.ddl-auto=create
 
 ### Endpoints
@@ -19,6 +24,7 @@ Para limpiar los datos de la bbdd con la ejecución de la aplicación
 **POST** `localhost:8080/create` método para crear nuevas Personas.
 
 Ejemplo de request:
+
 ``` JSON
 {
     "nombre": "Sebastian",
@@ -33,6 +39,7 @@ Ejemplo de request:
 **GET** `localhost:8080/readAll` método para obtener todas las Personas.
 
 Ejemplo de response:
+
 ``` JSON
 [
     {
@@ -47,9 +54,11 @@ Ejemplo de response:
 ]
 ```
 
-**POST** `localhost:8080/update` método para actualizar Personas. Cabe destacar que hay que agregar el **id** de la Persona en el bodyRequest.
+**POST** `localhost:8080/update` método para actualizar Personas. Cabe destacar que hay que agregar el **id** de la
+Persona en el bodyRequest.
 
 Ejemplo de request:
+
 ``` JSON
 {
     "id": 1,
@@ -73,6 +82,7 @@ localhost:8080/delete/3
 **GET** `localhost:8080/stats` método que devuelve cifras totalizadoras de cantidad de porcentaje de personas por país.
 
 Ejemplo de response:
+
 ``` JSON
 [
     {
@@ -88,4 +98,23 @@ Ejemplo de response:
         "average": "0.5"
     }
 ]
+```
+
+**POST** `localhost:8080/personas/{id1}/{relacion}/{id2}` método para armar relaciones entre personas. Los ids deben ser
+distintos y la relacion debe ser una soportada.
+
+- Relaciones: "herman@, prim@, ti@".
+
+Ejemplo de endpoint:
+
+```
+localhost:8080/personas/2/hermano/4
+```
+
+**GET** `localhost:8080/relaciones/2/4` método que retorna la relación que existe entre ambas personas según su id.
+
+Ejemplo de response:
+
+``` 
+Daniel es hermano de Pedro.
 ```

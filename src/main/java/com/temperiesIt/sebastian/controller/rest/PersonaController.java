@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
@@ -58,4 +57,15 @@ public class PersonaController {
     List<Stat> getStats() {
         return personaService.getStats();
     }
+
+    @PostMapping("/personas/{id1}/{relacion}/{id2}")
+    @ResponseStatus(HttpStatus.CREATED)
+    public void setRelacion(@PathVariable Long id1, @PathVariable String relacion, @PathVariable Long id2) { personaService.setRelacion(id1, relacion, id2); }
+
+    @GetMapping("/relaciones/{id1}/{id2}")
+    public @ResponseBody
+    String getRelacion(@PathVariable Long id1, @PathVariable Long id2) {
+        return personaService.getRelacion(id1, id2);
+    }
+
 }
